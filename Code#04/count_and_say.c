@@ -3,40 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   count_and_say.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cvalim-d <cvalim-d@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: ████████ <████████@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/23 13:04:54 by ████████          #+#    #+#             */
-/*   Updated: 2024/10/23 16:51:50 by cvalim-d         ###   ########.fr       */
+/*   Created: 2024/10/23 13:06:15 by ████████          #+#    #+#             */
+/*   Updated: 2024/10/24 00:42:48 by ████████         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
 #include <stdio.h>
 
-int	main(int argc, char **argv)
+int	main(int ac, char **av)
 {
 	int	i;
 	int	j;
-	int	count;
+	int	c;
 
-	if (argc != 2)
-		return (1);
 	i = 0;
-	while (argv[1][i] != '\0')
+	j = 0;
+	c = 0;
+	if (ac == 2)
 	{
-		count = 1;
-		j = i + 1;
-		while (argv[1][i] == argv[1][j])
+		while (av[1][i])
 		{
-			count++;
-			j++;
-			i++;
+			while (av[1][i] == av[1][j])
+			{
+				c++;
+				j++;
+			}
+			printf("%d%c", c, av[1][i]);
+			c = 0;
+			i = j;
 		}
-		if (argv[1][i + 1] == '\0')
-		{
-			printf("%i%c\n", count, argv[1][i]);
-			return (0);
-		}
-		printf("%i%c ", count, argv[1][i]);
-		i++;
 	}
 }

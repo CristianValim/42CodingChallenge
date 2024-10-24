@@ -3,50 +3,62 @@
 /*                                                        :::      ::::::::   */
 /*   count_and_say.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsilva-n <nsilva-n@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ████████ <████████@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/23 13:04:41 by nsilva-n          #+#    #+#             */
-/*   Updated: 2024/10/23 13:33:11 by nsilva-n         ###   ########.fr       */
+/*   Created: 2024/10/23 13:08:24 by ████████          #+#    #+#             */
+/*   Updated: 2024/10/24 00:43:24 by ████████         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include <stdio.h>
 
-int	ft_strlen(char *str)
+int ft_strlen(char *str)
 {
 	int	i;
 
 	i = 0;
-	while (str[i] != '\0')
+	while(str[i] != 0)
 		i++;
 	return (i);
 }
 
-int	main(int ac, char **av)
+void	ft_count(char *dest)
 {
 	int	i;
+	int	j;
 	int	count;
-	int	len;
 
-	i = 1;
-	count = 1;
-	len = 0;
-	if (ac == 2)
+	i = 0;
+	j = 0;
+	while (dest[i])
 	{
-		len = ft_strlen(av[1]);
-		while (i <= len)
+		j = i;
+		count = 0;
+		while(dest[i] == dest[j])
 		{
-			if (av[1][i] == av[1][i - 1])
-				count++;
-			else
+			count++;
+			j++;
+			if (dest[i] != dest[j])
 			{
-				printf("%d%c", count, av[1][i - 1]);
-				if (av[1][i] != '\0')
+				printf("%d%c", count, dest[i]);	
+				if (dest[j])
+				{
+					i = j;
 					printf(" ");
-				count = 1;
+				}
+					count = 0;
 			}
-			i++;
 		}
+		i++;		
+	}
+}
+
+
+
+int	main(int argc, char *argv[])
+{
+	if (argc == 2)
+	{
+		ft_count(argv[1]);
 	}
 }

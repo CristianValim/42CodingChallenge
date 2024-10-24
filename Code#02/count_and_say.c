@@ -3,62 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   count_and_say.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlameira <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ████████ <████████@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/23 13:08:24 by mlameira          #+#    #+#             */
-/*   Updated: 2024/10/23 13:39:54 by mlameira         ###   ########.fr       */
+/*   Created: 2024/10/23 13:04:54 by ████████          #+#    #+#             */
+/*   Updated: 2024/10/24 00:42:34 by ████████         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 
-int ft_strlen(char *str)
-{
-	int	i;
-
-	i = 0;
-	while(str[i] != 0)
-		i++;
-	return (i);
-}
-
-void	ft_count(char *dest)
+int	main(int argc, char **argv)
 {
 	int	i;
 	int	j;
 	int	count;
 
+	if (argc != 2)
+		return (1);
 	i = 0;
-	j = 0;
-	while (dest[i])
+	while (argv[1][i] != '\0')
 	{
-		j = i;
-		count = 0;
-		while(dest[i] == dest[j])
+		count = 1;
+		j = i + 1;
+		while (argv[1][i] == argv[1][j])
 		{
 			count++;
 			j++;
-			if (dest[i] != dest[j])
-			{
-				printf("%d%c", count, dest[i]);	
-				if (dest[j])
-				{
-					i = j;
-					printf(" ");
-				}
-					count = 0;
-			}
+			i++;
 		}
-		i++;		
-	}
-}
-
-
-
-int	main(int argc, char *argv[])
-{
-	if (argc == 2)
-	{
-		ft_count(argv[1]);
+		if (argv[1][i + 1] == '\0')
+		{
+			printf("%i%c\n", count, argv[1][i]);
+			return (0);
+		}
+		printf("%i%c ", count, argv[1][i]);
+		i++;
 	}
 }
